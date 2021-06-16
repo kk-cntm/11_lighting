@@ -8,6 +8,9 @@
 #include "Shader.h"
 #include "Texture.h"
 
+int width = 800;
+int height = 600;
+
 class MixValue {
     static constexpr float max = 1.0f;
     static constexpr float min = 0.1f;
@@ -28,7 +31,9 @@ public:
 
 MixValue mix_value(0.2f);
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+void framebuffer_size_callback(GLFWwindow* window, int new_width, int new_height) {
+    width = new_width;
+    height = new_height;
     glViewport(0, 0, width, height);
 }
 
@@ -61,48 +66,34 @@ void process_input(GLFWwindow* window) {
     handle_key(window, GLFW_KEY_RIGHT, handle_arrow_right);
 }
 
-class TriangleData {
-public:
-    static constexpr int length = 32;
-private:
+class Cube {
     unsigned int VBO, EBO, VAO, texture1ID, texture2ID;
     Texture texture1, texture2;
   
 public:
-    TriangleData(float vertices[length]):
+    Cube(float* vertices, int size):
         texture1("./assets/container.jpg", Texture::FileType::jpg),
         texture2("./assets/awesomeface.png", Texture::FileType::png) {
-        unsigned int elementsIndicies[] = {
-            0, 1, 3,
-            1, 2, 3
-        };
         
         glGenVertexArrays(1, &VAO);
         glBindVertexArray(VAO);
         
         glGenBuffers(1, &VBO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, length * sizeof(float), vertices, GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
         
-        glGenBuffers(1, &EBO);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), elementsIndicies, GL_STATIC_DRAW);
-        
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
         
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
         glEnableVertexAttribArray(1);
-        
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-        glEnableVertexAttribArray(2);
     }
     
     void draw() {
         texture1.bind(GL_TEXTURE0);
         texture2.bind(GL_TEXTURE1);
         glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
     }
 };
 
@@ -113,7 +104,7 @@ int main(int argc, const char * argv[]) {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     
-    GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(width, height, "LearnOpenGL", NULL, NULL);
     
     if (window == NULL) {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -129,19 +120,69 @@ int main(int argc, const char * argv[]) {
         return -2;
     }
     
-    glViewport(0, 0, 800, 600);
+    glViewport(0, 0, width, height);
+    glEnable(GL_DEPTH_TEST);
     
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     
     float vertices[] = {
-        // position         // color          // texture
-         0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, // top right
-         0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // bottom right
-        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // bottom left
-        -0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f  // top left
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+        
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+         0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+         0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
     };
     
-    TriangleData triangle(vertices);
+    glm::vec3 cubePositions[] = {
+        glm::vec3( 0.0f,  0.0f,   0.0f),
+        glm::vec3( 2.0f,  5.0f, -15.0f),
+        glm::vec3(-1.5f, -2.2f,  -2.5f),
+        glm::vec3(-3.8f, -2.0f, -12.3f),
+        glm::vec3( 2.4f, -0.4f,  -3.5f),
+        glm::vec3(-1.7f,  3.0f,  -7.5f),
+        glm::vec3( 1.3f, -2.0f,  -2.5f),
+        glm::vec3( 1.5f,  2.0f,  -2.5f),
+        glm::vec3( 1.5f,  0.2f,  -1.5f),
+        glm::vec3(-1.3f,  1.0f,  -1.5f)
+    };
+    
+    Cube cube(vertices, sizeof(vertices));
     
     Shader program("./shaders/vertexShader.glsl", "./shaders/fragmentShader.glsl");
     
@@ -149,38 +190,40 @@ int main(int argc, const char * argv[]) {
         process_input(window);
         
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
-        glm::mat4 model = glm::mat4(1.0f);
-        model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        float time = glfwGetTime();
+        const float radius = 20.0f;
+        
+        float camX = sin(time) * radius;
+        float camZ = cos(time) * radius;
         
         glm::mat4 view = glm::mat4(1.0f);
-        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+        view = glm::lookAt(glm::vec3(camX, 0.0f, camZ), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         
         glm::mat4 projection = glm::mat4(1.0f);
-        projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+        projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
         
         program.use();
         
         program.setValue("mixValue", mix_value.get());
-        program.setValue("model", model);
         program.setValue("view", view);
         program.setValue("projection", projection);
         program.setValue("tex1", 0);
         program.setValue("tex2", 1);
         
-        triangle.draw();
-        
-        float time = glfwGetTime();
-        float scaleValue = sin(time) / 2.0f + 0.5f;
-        
-        glm::mat4 transform2 = glm::mat4(1.0f);
-        transform2 = glm::translate(transform2, glm::vec3(-0.5f, 0.5f, 0.0f));
-        transform2 = glm::scale(transform2, glm::vec3(scaleValue, scaleValue, 0.0f));
-        
-        program.setValue("transform", transform2);
-        
-        triangle.draw();
+        for (int i = 0; i < 10; i++) {
+            glm::mat4 model = glm::mat4(1.0f);
+            model = glm::translate(model, cubePositions[i]);
+            
+            if (i % 3 == 0) {
+                model = glm::rotate(model, time + glm::radians(i * 20.0f), glm::vec3(1.0f, 0.3f, 0.5f));
+            }
+            
+            program.setValue("model", model);
+            
+            cube.draw();
+        }
         
         glfwPollEvents();
         glfwSwapBuffers(window);
