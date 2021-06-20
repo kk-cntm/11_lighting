@@ -34,4 +34,8 @@ public:
     void moveBackward();
     void moveRight();
     void moveLeft();
+    void moveForwardLeft();
+    void moveForwardRight();
+    void moveBackwardLeft();
+    void moveBackwardRight();
 };

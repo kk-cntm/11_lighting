@@ -111,7 +111,15 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
 }
 
 void process_camera_move(GLFWwindow* window) {
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+        camera.moveBackwardRight();
+    } else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+        camera.moveBackwardLeft();
+    } else if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+        camera.moveForwardRight();
+    } else if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+        camera.moveForwardLeft();
+    } else if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
         camera.moveForward();
     } else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
         camera.moveBackward();

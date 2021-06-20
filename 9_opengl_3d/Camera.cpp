@@ -51,6 +51,38 @@ void Camera::moveLeft() {
     m_position += glm::normalize(glm::cross(s_up, m_direction)) * s_moveNormalizer * m_deltaTime;
 }
 
+void Camera::moveForwardLeft() {
+    glm::vec3 right = glm::normalize(glm::cross(s_up, m_direction));
+    glm::vec3 up = glm::normalize(glm::cross(m_direction, right));
+    glm::vec3 direction = glm::rotate(glm::mat4(1.0f), 45.0f, up) * glm::vec4(m_direction.x, m_direction.y, m_direction.z, 1.0f);
+    
+    m_position += s_moveNormalizer * m_deltaTime * direction;
+}
+
+void Camera::moveForwardRight() {
+    glm::vec3 right = glm::normalize(glm::cross(s_up, m_direction));
+    glm::vec3 up = glm::normalize(glm::cross(right, m_direction));
+    glm::vec3 direction = glm::rotate(glm::mat4(1.0f), 45.0f, up) * glm::vec4(m_direction.x, m_direction.y, m_direction.z, 1.0f);
+    
+    m_position += s_moveNormalizer * m_deltaTime * direction;
+}
+
+void Camera::moveBackwardRight() {
+    glm::vec3 right = glm::normalize(glm::cross(s_up, m_direction));
+    glm::vec3 up = glm::normalize(glm::cross(m_direction, right));
+    glm::vec3 direction = glm::rotate(glm::mat4(1.0f), 45.0f, up) * glm::vec4(m_direction.x, m_direction.y, m_direction.z, 1.0f);
+    
+    m_position -= s_moveNormalizer * m_deltaTime * direction;
+}
+
+void Camera::moveBackwardLeft() {
+    glm::vec3 right = glm::normalize(glm::cross(s_up, m_direction));
+    glm::vec3 up = glm::normalize(glm::cross(right, m_direction));
+    glm::vec3 direction = glm::rotate(glm::mat4(1.0f), 45.0f, up) * glm::vec4(m_direction.x, m_direction.y, m_direction.z, 1.0f);
+    
+    m_position -= s_moveNormalizer * m_deltaTime * direction;
+}
+
 void Camera::calculateDirection() {
     m_direction.x = cos(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
     m_direction.y = sin(glm::radians(m_pitch));
