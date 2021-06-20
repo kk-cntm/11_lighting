@@ -14,6 +14,7 @@
 		2A41F7BE2673927600678B80 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A41F7BD2673927600678B80 /* Shader.cpp */; };
 		2A41F7C82675109200678B80 /* stb_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A41F7C72675109200678B80 /* stb_image.cpp */; };
 		2A41F7CD26753F0500678B80 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A41F7CB26753F0500678B80 /* Texture.cpp */; };
+		2A41FD00267E310B00678B80 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A41FCFE267E310B00678B80 /* Camera.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -305,6 +306,8 @@
 		2A41FCF926779E9C00678B80 /* rotate_normalized_axis.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rotate_normalized_axis.hpp; sourceTree = "<group>"; };
 		2A41FCFA26779E9C00678B80 /* projection.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = projection.inl; sourceTree = "<group>"; };
 		2A41FCFB26779E9C00678B80 /* type_aligned.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = type_aligned.hpp; sourceTree = "<group>"; };
+		2A41FCFE267E310B00678B80 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		2A41FCFF267E310B00678B80 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +352,8 @@
 				2A41F7C72675109200678B80 /* stb_image.cpp */,
 				2A41F7CB26753F0500678B80 /* Texture.cpp */,
 				2A41F7CC26753F0500678B80 /* Texture.h */,
+				2A41FCFE267E310B00678B80 /* Camera.cpp */,
+				2A41FCFF267E310B00678B80 /* Camera.h */,
 			);
 			path = 9_opengl_3d;
 			sourceTree = "<group>";
@@ -780,6 +785,7 @@
 				2A41F7A026736FA600678B80 /* main.cpp in Sources */,
 				2A41F7C82675109200678B80 /* stb_image.cpp in Sources */,
 				2A41F7BE2673927600678B80 /* Shader.cpp in Sources */,
+				2A41FD00267E310B00678B80 /* Camera.cpp in Sources */,
 				2A41F7BB267375D000678B80 /* glad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "Shader.h"
 #include "Texture.h"
+#include "Camera.h"
 
 int width = 800;
 int height = 600;
@@ -14,19 +15,20 @@ int height = 600;
 float last_xpos = (float)width / 2.0f;
 float last_ypos = (float)height / 2.0f;
 
-float yaw = -90.0f;
-float pitch = 0.0f;
-
 float fov = 45.0f;
 
 float last_frame = 0.0f;
 float delta_time = 0.0f;
 
-bool right_mouse_btn_pressed = false;
+Camera camera({
+    glm::vec3(0.0f, 0.0f, 3.0f),
+    glm::vec3(0.0f, 0.0f, -1.0f),
+    -90.0f,
+    0.0f,
+    delta_time
+});
 
-glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 3.0f);
-glm::vec3 camera_up = glm::vec3(0.0f, 1.0f, 0.0f);
-glm::vec3 camera_front = glm::vec3(0.0f, 0.0f, -1.0f);
+bool right_mouse_btn_pressed = false;
 
 class MixValue {
     static constexpr float max = 1.0f;
@@ -73,14 +75,8 @@ void mouse_pos_callback(GLFWwindow* window, double xpos, double ypos) {
     x_offset *= sensetive;
     y_offset *= sensetive;
     
-    yaw += x_offset;
-    pitch += y_offset;
-    
-    if (pitch > 89.0f) {
-        pitch = 89.0f;
-    } else if (pitch < -89.0f) {
-        pitch = -89.0f;
-    }
+    camera.addYaw(x_offset);
+    camera.addPitch(y_offset);
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
@@ -115,16 +111,14 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
 }
 
 void process_camera_move(GLFWwindow* window) {
-    const float speed = 2.5f * delta_time;
-    
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-        camera_pos += camera_front * speed;
+        camera.moveForward();
     } else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-        camera_pos -= camera_front * speed;
+        camera.moveBackward();
     } else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-        camera_pos += glm::normalize(glm::cross(camera_up, camera_front)) * speed;
+        camera.moveLeft();
     } else if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-        camera_pos -= glm::normalize(glm::cross(camera_up, camera_front)) * speed;
+        camera.moveRight();
     }
 }
 
@@ -276,20 +270,14 @@ int main(int argc, const char * argv[]) {
         delta_time = time - last_frame;
         last_frame = time;
         
+        camera.setDeltaTime(delta_time);
+        
         process_input(window);
         
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        
-        glm::vec3 direction;
-        direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-        direction.y = sin(glm::radians(pitch));
-        direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-        
-        camera_front = glm::normalize(direction);
 
-        glm::mat4 view = glm::mat4(1.0f);
-        view = glm::lookAt(camera_pos, camera_pos + direction, camera_up);
+        glm::mat4 view = camera.view();
         
         glm::mat4 projection = glm::mat4(1.0f);
         projection = glm::perspective(glm::radians(fov), (float)width / (float)height, 0.1f, 100.0f);
