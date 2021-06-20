@@ -4,20 +4,28 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-struct CameraArgs {
-    glm::vec3 position;
-    glm::vec3 direction;
-    float yaw;
-    float pitch;
-    float deltaTime;
-};
-
 class Camera {
+public:
+    enum Type {
+        fly, fps
+    };
+    
+    struct CameraArgs {
+        Type type;
+        glm::vec3 position;
+        glm::vec3 direction;
+        float yaw;
+        float pitch;
+        float deltaTime;
+    };
+
+private:
     glm::vec3 m_position;
     glm::vec3 m_direction;
     float m_yaw;
     float m_pitch;
     float m_deltaTime;
+    Type m_type;
     
     static const glm::vec3 s_up;
     static constexpr float s_moveNormalizer = 2.5f;

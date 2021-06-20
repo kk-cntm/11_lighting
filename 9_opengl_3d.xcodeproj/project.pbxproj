@@ -15,6 +15,7 @@
 		2A41F7C82675109200678B80 /* stb_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A41F7C72675109200678B80 /* stb_image.cpp */; };
 		2A41F7CD26753F0500678B80 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A41F7CB26753F0500678B80 /* Texture.cpp */; };
 		2A41FD00267E310B00678B80 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A41FCFE267E310B00678B80 /* Camera.cpp */; };
+		2A41FD03267F58A000678B80 /* lookAt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A41FD01267F58A000678B80 /* lookAt.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -308,6 +309,8 @@
 		2A41FCFB26779E9C00678B80 /* type_aligned.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = type_aligned.hpp; sourceTree = "<group>"; };
 		2A41FCFE267E310B00678B80 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		2A41FCFF267E310B00678B80 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		2A41FD01267F58A000678B80 /* lookAt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lookAt.cpp; sourceTree = "<group>"; };
+		2A41FD02267F58A000678B80 /* lookAt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lookAt.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +357,8 @@
 				2A41F7CC26753F0500678B80 /* Texture.h */,
 				2A41FCFE267E310B00678B80 /* Camera.cpp */,
 				2A41FCFF267E310B00678B80 /* Camera.h */,
+				2A41FD01267F58A000678B80 /* lookAt.cpp */,
+				2A41FD02267F58A000678B80 /* lookAt.h */,
 			);
 			path = 9_opengl_3d;
 			sourceTree = "<group>";
@@ -782,6 +787,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A41F7CD26753F0500678B80 /* Texture.cpp in Sources */,
+				2A41FD03267F58A000678B80 /* lookAt.cpp in Sources */,
 				2A41F7A026736FA600678B80 /* main.cpp in Sources */,
 				2A41F7C82675109200678B80 /* stb_image.cpp in Sources */,
 				2A41F7BE2673927600678B80 /* Shader.cpp in Sources */,
