@@ -7,13 +7,13 @@ glm::mat4 lookAt(glm::vec3 position, glm::vec3 direction, glm::vec3 up) {
     
     glm::mat4 rotate(1.0f);
     rotate[0][0] = x.x;
-    rotate[0][1] = x.y;
-    rotate[0][2] = x.z;
-    rotate[1][0] = y.x;
+    rotate[1][0] = x.y;
+    rotate[2][0] = x.z;
+    rotate[0][1] = y.x;
     rotate[1][1] = y.y;
-    rotate[1][2] = y.z;
-    rotate[2][0] = z.x;
-    rotate[2][1] = z.y;
+    rotate[2][1] = y.z;
+    rotate[0][2] = z.x;
+    rotate[1][2] = z.y;
     rotate[2][2] = z.z;
     
     glm::mat4 translate(1.0f);
