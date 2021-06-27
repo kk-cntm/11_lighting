@@ -313,6 +313,8 @@
 		2AD07AEA268356B500C82AB4 /* cube-fs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "cube-fs.glsl"; sourceTree = "<group>"; };
 		2AD07AEB2683574400C82AB4 /* cube-vs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "cube-vs.glsl"; sourceTree = "<group>"; };
 		2AD07AEC268897F500C82AB4 /* light-vs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "light-vs.glsl"; sourceTree = "<group>"; };
+		2AD07AED2688A61F00C82AB4 /* cube-gouraud-fs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "cube-gouraud-fs.glsl"; sourceTree = "<group>"; };
+		2AD07AEE2688A67700C82AB4 /* cube-gouraud-vs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "cube-gouraud-vs.glsl"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +419,8 @@
 				2AD07AEA268356B500C82AB4 /* cube-fs.glsl */,
 				2AD07AEB2683574400C82AB4 /* cube-vs.glsl */,
 				2AD07AEC268897F500C82AB4 /* light-vs.glsl */,
+				2AD07AED2688A61F00C82AB4 /* cube-gouraud-fs.glsl */,
+				2AD07AEE2688A67700C82AB4 /* cube-gouraud-vs.glsl */,
 			);
 			path = shaders;
 			sourceTree = "<group>";
