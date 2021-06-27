@@ -198,7 +198,7 @@ int main(int argc, const char * argv[]) {
     };
     
     glm::vec3 cubePosition(0.0f,  0.0f, 0.0f);
-    glm::vec3 lightPosition(1.2f, 1.0f, 2.0f);
+    glm::vec3 lightPosition(1.2f, 0.0f, 2.0f);
     
     unsigned int VAO, VBO, lightVAO;
     
@@ -223,7 +223,7 @@ int main(int argc, const char * argv[]) {
     glEnableVertexAttribArray(0);
     
     Shader cubeProgram("./shaders/cube-vs.glsl", "./shaders/cube-fs.glsl");
-    Shader lightProgram("./shaders/cube-vs.glsl", "./shaders/light-fs.glsl");
+    Shader lightProgram("./shaders/light-vs.glsl", "./shaders/light-fs.glsl");
     
     while (!glfwWindowShouldClose(window)) {
         process_input(window);
