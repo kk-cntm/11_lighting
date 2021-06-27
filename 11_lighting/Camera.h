@@ -46,4 +46,5 @@ public:
     void moveForwardRight();
     void moveBackwardLeft();
     void moveBackwardRight();
+    glm::vec3 getPosition();
 };

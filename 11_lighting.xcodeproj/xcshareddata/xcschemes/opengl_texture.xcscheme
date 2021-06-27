@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2A41F79B26736FA600678B80"
-               BuildableName = "9_opengl_3d"
-               BlueprintName = "9_opengl_3d"
-               ReferencedContainer = "container:9_opengl_3d.xcodeproj">
+               BuildableName = "11_lighting"
+               BlueprintName = "11_lighting"
+               ReferencedContainer = "container:11_lighting.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2A41F79B26736FA600678B80"
-            BuildableName = "9_opengl_3d"
-            BlueprintName = "9_opengl_3d"
-            ReferencedContainer = "container:9_opengl_3d.xcodeproj">
+            BuildableName = "11_lighting"
+            BlueprintName = "11_lighting"
+            ReferencedContainer = "container:11_lighting.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -63,9 +63,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2A41F79B26736FA600678B80"
-            BuildableName = "9_opengl_3d"
-            BlueprintName = "9_opengl_3d"
-            ReferencedContainer = "container:9_opengl_3d.xcodeproj">
+            BuildableName = "11_lighting"
+            BlueprintName = "11_lighting"
+            ReferencedContainer = "container:11_lighting.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -32,7 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2A41F79C26736FA600678B80 /* 9_opengl_3d */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 9_opengl_3d; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A41F79C26736FA600678B80 /* 11_lighting */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 11_lighting; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A41F79F26736FA600678B80 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2A41F7AC26736FF200678B80 /* glfw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
 		2A41F7AD26736FF200678B80 /* glfw3native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
@@ -42,8 +42,6 @@
 		2A41F7BA267375D000678B80 /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
 		2A41F7BC26738A6300678B80 /* Shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
 		2A41F7BD2673927600678B80 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
-		2A41F7C126739B8400678B80 /* vertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = vertexShader.glsl; sourceTree = "<group>"; };
-		2A41F7C226739C0900678B80 /* fragmentShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = fragmentShader.glsl; sourceTree = "<group>"; };
 		2A41F7C42675030400678B80 /* wall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wall.jpg; sourceTree = "<group>"; };
 		2A41F7C52675100900678B80 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		2A41F7C72675109200678B80 /* stb_image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stb_image.cpp; sourceTree = "<group>"; };
@@ -311,6 +309,9 @@
 		2A41FCFF267E310B00678B80 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		2A41FD01267F58A000678B80 /* lookAt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lookAt.cpp; sourceTree = "<group>"; };
 		2A41FD02267F58A000678B80 /* lookAt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lookAt.h; sourceTree = "<group>"; };
+		2AD07AE92683565200C82AB4 /* light-fs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "light-fs.glsl"; sourceTree = "<group>"; };
+		2AD07AEA268356B500C82AB4 /* cube-fs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "cube-fs.glsl"; sourceTree = "<group>"; };
+		2AD07AEB2683574400C82AB4 /* cube-vs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "cube-vs.glsl"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,7 +333,7 @@
 				2A41F7C026739B6600678B80 /* shaders */,
 				2A41F7B62673727C00678B80 /* libs */,
 				2A41F7A626736FBA00678B80 /* include */,
-				2A41F79E26736FA600678B80 /* 9_opengl_3d */,
+				2A41F79E26736FA600678B80 /* 11_lighting */,
 				2A41F79D26736FA600678B80 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -340,12 +341,12 @@
 		2A41F79D26736FA600678B80 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2A41F79C26736FA600678B80 /* 9_opengl_3d */,
+				2A41F79C26736FA600678B80 /* 11_lighting */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2A41F79E26736FA600678B80 /* 9_opengl_3d */ = {
+		2A41F79E26736FA600678B80 /* 11_lighting */ = {
 			isa = PBXGroup;
 			children = (
 				2A41F7BA267375D000678B80 /* glad.c */,
@@ -360,7 +361,7 @@
 				2A41FD01267F58A000678B80 /* lookAt.cpp */,
 				2A41FD02267F58A000678B80 /* lookAt.h */,
 			);
-			path = 9_opengl_3d;
+			path = 11_lighting;
 			sourceTree = "<group>";
 		};
 		2A41F7A626736FBA00678B80 /* include */ = {
@@ -411,8 +412,9 @@
 		2A41F7C026739B6600678B80 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
-				2A41F7C126739B8400678B80 /* vertexShader.glsl */,
-				2A41F7C226739C0900678B80 /* fragmentShader.glsl */,
+				2AD07AE92683565200C82AB4 /* light-fs.glsl */,
+				2AD07AEA268356B500C82AB4 /* cube-fs.glsl */,
+				2AD07AEB2683574400C82AB4 /* cube-vs.glsl */,
 			);
 			path = shaders;
 			sourceTree = "<group>";
@@ -733,9 +735,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2A41F79B26736FA600678B80 /* 9_opengl_3d */ = {
+		2A41F79B26736FA600678B80 /* 11_lighting */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2A41F7A326736FA600678B80 /* Build configuration list for PBXNativeTarget "9_opengl_3d" */;
+			buildConfigurationList = 2A41F7A326736FA600678B80 /* Build configuration list for PBXNativeTarget "11_lighting" */;
 			buildPhases = (
 				2A41F79826736FA600678B80 /* Sources */,
 				2A41F79926736FA600678B80 /* Frameworks */,
@@ -745,9 +747,9 @@
 			);
 			dependencies = (
 			);
-			name = 9_opengl_3d;
+			name = 11_lighting;
 			productName = opengl_gradient_triangle;
-			productReference = 2A41F79C26736FA600678B80 /* 9_opengl_3d */;
+			productReference = 2A41F79C26736FA600678B80 /* 11_lighting */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -763,7 +765,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2A41F79726736FA600678B80 /* Build configuration list for PBXProject "9_opengl_3d" */;
+			buildConfigurationList = 2A41F79726736FA600678B80 /* Build configuration list for PBXProject "11_lighting" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -776,7 +778,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2A41F79B26736FA600678B80 /* 9_opengl_3d */,
+				2A41F79B26736FA600678B80 /* 11_lighting */,
 			);
 		};
 /* End PBXProject section */
@@ -949,7 +951,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2A41F79726736FA600678B80 /* Build configuration list for PBXProject "9_opengl_3d" */ = {
+		2A41F79726736FA600678B80 /* Build configuration list for PBXProject "11_lighting" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2A41F7A126736FA600678B80 /* Debug */,
@@ -958,7 +960,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2A41F7A326736FA600678B80 /* Build configuration list for PBXNativeTarget "9_opengl_3d" */ = {
+		2A41F7A326736FA600678B80 /* Build configuration list for PBXNativeTarget "11_lighting" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2A41F7A426736FA600678B80 /* Debug */,

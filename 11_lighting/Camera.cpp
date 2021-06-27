@@ -112,3 +112,7 @@ void Camera::calculateDirection() {
 glm::mat4 Camera::view() {
     return lookAt(m_position, m_position + m_direction, s_up);
 }
+
+glm::vec3 Camera::getPosition() {
+    return m_position;
+}

@@ -11,7 +11,8 @@ public:
     void use();
     void setValue(const char* name, float value);
     void setValue(const char* name, int value);
-    void setValue(const char* name, glm::mat4& value);
+    void setValue(const char* name, const glm::mat4& value);
+    void setValue(const char* name, const glm::vec3& value);
     
 private:
     unsigned int compileShader(const char* src, const GLint type);
